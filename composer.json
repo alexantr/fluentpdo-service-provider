@@ -1,0 +1,27 @@
+{
+    "name": "alexantr/fluentpdo-service-provider",
+    "type": "library",
+    "description": "Silex service provider for FluentPDO",
+    "keywords": ["silex", "service provider", "fluentpdo"],
+    "homepage": "https://github.com/alexantr/fluentpdo-service-provider",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alex Yashkin",
+            "homepage": "http://yashkin.by/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "pimple/pimple": "~3.0",
+        "lichtner/fluentpdo": "dev-master"
+    },
+    "autoload": {
+        "psr-4": { "Alexantr\\Silex\\Provider": "src" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
+    }
+}
