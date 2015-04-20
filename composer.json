@@ -17,7 +17,7 @@
         "lichtner/fluentpdo": "dev-master"
     },
     "autoload": {
-        "psr-4": { "Alexantr\\Silex\\Provider": "src" }
+        "psr-4": { "Alexantr\\Silex\\Provider\\": "src" }
     },
     "extra": {
         "branch-alias": {
