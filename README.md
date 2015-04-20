@@ -6,9 +6,12 @@ Silex service provider for [FluentPDO](http://lichtner.github.io/fluentpdo/)
 
 ```php
 $app->register(new \Alexantr\Silex\Provider\FluentPdoServiceProvider(), array(
-    'fpdo.dsn' => 'mysql:host=localhost;dbname=blog',
-    'fpdo.username' => 'username',
-    'fpdo.password' => 'password',
+    'fpdo.pdo_options' => array(
+        'dsn' => 'mysql:dbname=blog;host=localhost;charset=UTF8',
+        'username' => 'username',
+        'password' => 'password',
+    ),
+    'fpdo.debug' => false,
 );
 ```
 

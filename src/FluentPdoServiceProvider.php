@@ -9,14 +9,21 @@ class FluentPdoServiceProvider implements ServiceProviderInterface
 {
     public function register(Container $app)
     {
-        $app['fpdo.dsn'] = 'mysql:host=localhost;dbname=blog;charset=UTF8';
-        $app['fpdo.username'] = 'root';
-        $app['fpdo.password'] = '';
-        $app['fpdo.options'] = array();
+        $app['fpdo.pdo_options'] = array(
+            'dsn' => 'mysql:dbname=test;host=localhost',
+            'username' => 'root',
+            'password' => '',
+            'options' => array(),
+        );
         $app['fpdo.debug'] = false;
 
         $app['fpdo'] = function ($app) {
-            $pdo = new \PDO($app['fpdo.dsn'], $app['fpdo.username'], $app['fpdo.password'], $app['fpdo.options']);
+            $options = $app['fpdo.pdo.options'];
+            $dsn = isset($options['dsn']) ? $options['dsn'] : 'mysql:dbname=test;host=localhost';
+            $username = isset($options['username']) ? $options['username'] : 'root';
+            $password = isset($options['password']) ? $options['password'] : '';
+            $options = isset($options['options']) && is_array($options['options']) ? $options['options'] : array();
+            $pdo = new \PDO($dsn, $username, $password, $options);
             $fpdo = new \FluentPDO($pdo);
             $fpdo->debug = $app['fpdo.debug'];
             return $fpdo;
