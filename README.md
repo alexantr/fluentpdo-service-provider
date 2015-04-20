@@ -12,7 +12,7 @@ $app->register(new \Alexantr\Silex\Provider\FluentPdoServiceProvider(), array(
         'password' => 'password',
     ),
     'fpdo.debug' => false,
-);
+));
 ```
 
 ## Usage
