@@ -28,3 +28,27 @@ $posts = $app['fpdo']
 ```
 
 For more examples see [FluentPDO documentation](http://lichtner.github.io/fluentpdo/)
+
+## Enable debugging
+
+Log queries to STDERR (for console debugging):
+
+```php
+$app['fpdo.debug'] = true;
+```
+
+or set callback:
+
+```php
+$app['fpdo.debug'] = function (\Silex\Application $app) {
+    return function (\BaseQuery $query) use ($app) {
+        // simple example with logger
+        $debug_line = array();
+        $debug_line[] = 'Query: ' . $query->getQuery(false);
+        $debug_line[] = 'Params: ' . implode(', ', $query->getParameters());
+        $debug_line[] = 'Row count: ' . ($query->getResult() ? $query->getResult()->rowCount() : 0);
+        $debug_line[] = 'Time: ' . $query->getTime();
+        $app['logger']->debug(implode(', ', $debug_line));
+    };
+};
+```
