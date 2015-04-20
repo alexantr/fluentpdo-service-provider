@@ -18,7 +18,7 @@ class FluentPdoServiceProvider implements ServiceProviderInterface
         $app['fpdo.debug'] = false;
 
         $app['fpdo'] = function ($app) {
-            $options = $app['fpdo.pdo.options'];
+            $options = $app['fpdo.pdo_options'];
             $dsn = isset($options['dsn']) ? $options['dsn'] : 'mysql:dbname=test;host=localhost';
             $username = isset($options['username']) ? $options['username'] : 'root';
             $password = isset($options['password']) ? $options['password'] : '';
