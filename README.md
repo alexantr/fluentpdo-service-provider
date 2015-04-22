@@ -2,6 +2,14 @@
 
 Silex service provider for [FluentPDO](http://lichtner.github.io/fluentpdo/)
 
+## Installation
+
+Install Provider through [Composer](http://getcomposer.org/):
+
+```
+composer require alexantr/fluentpdo-service-provider "~2.0@dev"
+```
+
 ## Registering and configuration
 
 ```php
