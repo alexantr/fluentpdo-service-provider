@@ -1,19 +1,19 @@
 # FluentPDO Service Provider
 
-Silex service provider for [FluentPDO](http://lichtner.github.io/fluentpdo/)
+Pimple service provider for [FluentPDO](http://lichtner.github.io/fluentpdo/).
 
 ## Installation
 
-Install Provider through [Composer](http://getcomposer.org/):
+Install provider through [Composer](http://getcomposer.org/):
 
 ```
-composer require alexantr/fluentpdo-service-provider "~2.0@dev"
+composer require alexantr/fluentpdo-service-provider "~1.0@dev"
 ```
 
 ## Registering and configuration
 
 ```php
-$app->register(new \Alexantr\Silex\Provider\FluentPdoServiceProvider(), array(
+$app->register(new \Alexantr\Pimple\Provider\FluentPdoServiceProvider(), array(
     'fpdo.pdo_options' => array(
         'dsn' => 'mysql:dbname=blog;host=localhost;charset=UTF8',
         'username' => 'username',
@@ -35,7 +35,7 @@ $posts = $app['fpdo']
     ->fetchAll();
 ```
 
-For more examples see [FluentPDO documentation](http://lichtner.github.io/fluentpdo/)
+For more examples see [FluentPDO documentation](http://lichtner.github.io/fluentpdo/).
 
 ## Enable debugging
 
@@ -45,7 +45,7 @@ Log queries to STDERR (for console debugging):
 $app['fpdo.debug'] = true;
 ```
 
-or set callback:
+or set callback (example for Silex 2):
 
 ```php
 $app['fpdo.debug'] = function (\Silex\Application $app) {

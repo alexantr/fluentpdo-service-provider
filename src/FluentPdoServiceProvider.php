@@ -1,6 +1,6 @@
 <?php
 
-namespace Alexantr\Silex\Provider;
+namespace Alexantr\Pimple\Provider;
 
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
