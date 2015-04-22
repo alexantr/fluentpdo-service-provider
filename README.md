@@ -41,14 +41,16 @@ or set callback:
 
 ```php
 $app['fpdo.debug'] = function (\Silex\Application $app) {
-    return function (\BaseQuery $query) use ($app) {
+    return function (\BaseQuery $q) use ($app) {
         // simple example with logger
-        $debug_line = array();
-        $debug_line[] = 'Query: ' . $query->getQuery(false);
-        $debug_line[] = 'Params: ' . implode(', ', $query->getParameters());
-        $debug_line[] = 'Row count: ' . ($query->getResult() ? $query->getResult()->rowCount() : 0);
-        $debug_line[] = 'Time: ' . $query->getTime();
-        $app['logger']->debug(implode(', ', $debug_line));
+        if (isset($app['logger']) && $app['logger'] !== null) {
+            $debug_line = array();
+            $debug_line[] = 'Query: ' . $q->getQuery(false);
+            $debug_line[] = 'Params: ' . implode(', ', $q->getParameters());
+            $debug_line[] = 'Row count: ' . ($q->getResult() ? $q->getResult()->rowCount() : 0);
+            $debug_line[] = 'Time: ' . $q->getTime();
+            $app['logger']->debug(implode(', ', $debug_line));
+        }
     };
 };
 ```
