@@ -14,17 +14,19 @@ class FluentPdoServiceProvider implements ServiceProviderInterface
 {
     public function register(Container $app)
     {
-        $app['fpdo.pdo_options'] = array(
-            'dsn' => 'mysql:dbname=test;host=localhost',
-            'username' => 'root',
-            'password' => '',
-            'options' => array(),
-        );
+        $app['fpdo.pdo_options'] = array();
         $app['fpdo.debug'] = false;
 
-        $app['fpdo'] = function ($app) {
-            $opt = $app['fpdo.pdo_options'];
-            $pdo = new \PDO($opt['dsn'], $opt['username'], $opt['password'], (array)$opt['options']);
+        $default_options = array(
+            'dsn' => 'mysql:host=localhost',
+            'username' => null,
+            'password' => null,
+            'options' => null,
+        );
+
+        $app['fpdo'] = function ($app) use ($default_options) {
+            $opt = array_merge($default_options, $app['fpdo.pdo_options']);
+            $pdo = new \PDO($opt['dsn'], $opt['username'], $opt['password'], $opt['options']);
             $fpdo = new \FluentPDO($pdo);
             $fpdo->debug = $app['fpdo.debug'];
             return $fpdo;
