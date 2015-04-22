@@ -45,20 +45,18 @@ Log queries to STDERR (for console debugging):
 $app['fpdo.debug'] = true;
 ```
 
-or set callback (example for Silex 2):
+or set callback:
 
 ```php
-$app['fpdo.debug'] = function (\Silex\Application $app) {
-    return function (\BaseQuery $q) use ($app) {
-        // simple example with logger
-        if (isset($app['logger']) && $app['logger'] !== null) {
-            $debug_line = array();
-            $debug_line[] = 'Query: ' . $q->getQuery(false);
-            $debug_line[] = 'Params: ' . implode(', ', $q->getParameters());
-            $debug_line[] = 'Row count: ' . ($q->getResult() ? $q->getResult()->rowCount() : 0);
-            $debug_line[] = 'Time: ' . $q->getTime();
-            $app['logger']->debug(implode(', ', $debug_line));
-        }
-    };
-};
+$app['fpdo.debug'] = $app->protect(function (\BaseQuery $query) use ($app) {
+    // simple example with logger
+    if (isset($app['logger']) && $app['logger'] !== null) {
+        $debug_line = array();
+        $debug_line[] = 'Query: ' . $q->getQuery(false);
+        $debug_line[] = 'Params: ' . implode(', ', $q->getParameters());
+        $debug_line[] = 'RowCount: ' . ($q->getResult() ? $q->getResult()->rowCount() : 0);
+        $debug_line[] = 'Time: ' . $q->getTime();
+        $app['logger']->debug(implode(', ', $debug_line));
+    }
+});
 ```
