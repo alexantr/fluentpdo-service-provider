@@ -23,9 +23,9 @@ $app->register(new \Alexantr\Silex\Provider\FluentPdoServiceProvider(), array(
 ));
 ```
 
-## Usage
+## Usage example
 
-To get all records for given table:
+To get first ten records for table "posts":
 
 ```php
 $posts = $app['fpdo']
