@@ -14,7 +14,7 @@
     "require": {
         "php": ">=5.3.0",
         "pimple/pimple": "~3.0",
-        "lichtner/fluentpdo": "~1.0"
+        "fpdo/fluentpdo": "1.1.*"
     },
     "autoload": {
         "psr-4": { "Alexantr\\Pimple\\Provider\\": "src" }

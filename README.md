@@ -1,6 +1,6 @@
 # FluentPDO Service Provider
 
-Pimple service provider for [FluentPDO](http://lichtner.github.io/fluentpdo/).
+Pimple service provider for [FluentPDO](http://envms.github.io/fluentpdo/).
 
 ## Installation
 
@@ -29,13 +29,13 @@ To get first ten records for table "posts":
 
 ```php
 $posts = $app['fpdo']
-    ->from('posts')
-    ->orderBy('created_at DESC')
-    ->limit(10)
-    ->fetchAll();
+    ->from('article')
+    ->where('published_at > ?', $date)
+    ->orderBy('published_at DESC')
+    ->limit(5);
 ```
 
-For more examples see [FluentPDO documentation](http://lichtner.github.io/fluentpdo/).
+For more examples see [FluentPDO documentation](http://envms.github.io/fluentpdo/).
 
 ## Enable debugging
 
